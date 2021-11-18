@@ -1,0 +1,16 @@
+{
+  "source": [
+    "aws.logs"
+  ],
+  "detail-type": [
+    "AWS API Call via CloudTrail"
+  ],
+  "detail": {
+    "eventSource": [
+      "logs.amazonaws.com"
+    ],
+    "eventName": [
+      "CreateLogGroup"
+    ]
+  }
+}

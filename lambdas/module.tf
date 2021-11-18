@@ -22,3 +22,10 @@ resource "aws_cloudformation_stack" "datadog_forwarder" {
   }
   template_url = "https://datadog-cloudformation-template.s3.amazonaws.com/aws/forwarder/latest.yaml"
 }
+
+// Log group created cloudwatch event bridge rule
+resource "aws_cloudwatch_event_rule" "create_log_group_event" {
+  name = "log-group-created"
+  description = "Event bridge trigger for a newly created log group"
+  event_pattern = file("lambdas/log-group-created-event-pattern.json")
+}
