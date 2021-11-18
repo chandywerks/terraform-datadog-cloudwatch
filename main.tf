@@ -10,7 +10,7 @@ terraform {
   }
 }
 
-variable "ddApiKeySecretArn" {
+variable "ddApiKeySecretName" {
   type = string
 }
 
@@ -18,31 +18,31 @@ variable "ddApiKeySecretArn" {
 module "us-east-1" {
   source = "./lambdas"
   region = "us-east-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "us-east-2" {
   source = "./lambdas"
   region = "us-east-2"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "us-west-1" {
   source = "./lambdas"
   region = "us-west-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "us-west-2" {
   source = "./lambdas"
   region = "us-west-2"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "ca-central-1" {
   source = "./lambdas"
   region = "ca-central-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 // South America
@@ -50,7 +50,7 @@ module "ca-central-1" {
 module "sa-east-1" {
   source = "./lambdas"
   region = "sa-east-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 // Europe
@@ -58,31 +58,31 @@ module "sa-east-1" {
 module "eu-central-1" {
   source = "./lambdas"
   region = "eu-central-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "eu-west-1" {
   source = "./lambdas"
   region = "eu-west-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "eu-west-2" {
   source = "./lambdas"
   region = "eu-west-2"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "eu-west-3" {
   source = "./lambdas"
   region = "eu-west-3"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "eu-north-1" {
   source = "./lambdas"
   region = "eu-north-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 // Asia Pacific
@@ -90,29 +90,29 @@ module "eu-north-1" {
 module "ap-south-1" {
   source = "./lambdas"
   region = "ap-south-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "ap-northeast-2" {
   source = "./lambdas"
   region = "ap-northeast-2"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "ap-southeast-1" {
   source = "./lambdas"
   region = "ap-southeast-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "ap-southeast-2" {
   source = "./lambdas"
   region = "ap-southeast-2"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
 
 module "ap-northeast-1" {
   source = "./lambdas"
   region = "ap-northeast-1"
-  ddApiKeySecretArn = var.ddApiKeySecretArn
+  ddApiKeySecretName = var.ddApiKeySecretName
 }
