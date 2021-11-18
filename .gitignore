@@ -1,0 +1,7 @@
+# Variables
+*.tfvars
+
+# System and IDE files
+*.swp
+*.swo
+*.suo
