@@ -6,6 +6,15 @@ variable "ddApiKeySecretName" {
   type = string
 }
 
+variable "logSubscriptionLambdaRoleArn" {
+  type = string
+}
+
+variable "logSubscriptionLambdaHash" {
+  type = string
+}
+
+
 provider "aws" {
   region = var.region
 }
@@ -30,4 +39,35 @@ resource "aws_cloudwatch_event_rule" "create_log_group_event" {
   name = "log-group-created"
   description = "Event bridge trigger for a newly created log group"
   event_pattern = file("lambdas/log-group-created-event-pattern.json")
+}
+
+// Log group forwarder subscription lambda
+resource "aws_lambda_function" "log_subscription" {
+  filename = "/tmp/log-subscription.zip"
+  source_code_hash = var.logSubscriptionLambdaHash
+  function_name = "log-subscription"
+  role = var.logSubscriptionLambdaRoleArn
+  description = "Subscribe log group to the datadog-forwarder lambda when created"
+  handler = "index.handler"
+  runtime = "nodejs14.x"
+
+  environment {
+    variables = {
+      datadog_forwarder_arn = aws_cloudformation_stack.datadog_forwarder.outputs.DatadogForwarderArn
+    }
+  }
+}
+
+resource "aws_cloudwatch_event_target" "create_log_group_subscription_trigger" {
+  rule = aws_cloudwatch_event_rule.create_log_group_event.name
+  target_id = "log_subscription"
+  arn = aws_lambda_function.log_subscription.arn
+}
+
+resource "aws_lambda_permission" "create_log_group_subscription_permission" {
+  statement_id = "AllowExecutionFromCloudWatch"
+  action = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.log_subscription.function_name
+  principal = "events.amazonaws.com"
+  source_arn = aws_cloudwatch_event_rule.create_log_group_event.arn
 }

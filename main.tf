@@ -51,30 +51,40 @@ module "us-east-1" {
   source = "./lambdas"
   region = "us-east-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "us-east-2" {
   source = "./lambdas"
   region = "us-east-2"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "us-west-1" {
   source = "./lambdas"
   region = "us-west-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "us-west-2" {
   source = "./lambdas"
   region = "us-west-2"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "ca-central-1" {
   source = "./lambdas"
   region = "ca-central-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 // South America
@@ -83,6 +93,8 @@ module "sa-east-1" {
   source = "./lambdas"
   region = "sa-east-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 // Europe
@@ -91,30 +103,40 @@ module "eu-central-1" {
   source = "./lambdas"
   region = "eu-central-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "eu-west-1" {
   source = "./lambdas"
   region = "eu-west-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "eu-west-2" {
   source = "./lambdas"
   region = "eu-west-2"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "eu-west-3" {
   source = "./lambdas"
   region = "eu-west-3"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "eu-north-1" {
   source = "./lambdas"
   region = "eu-north-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 // Asia Pacific
@@ -123,28 +145,38 @@ module "ap-south-1" {
   source = "./lambdas"
   region = "ap-south-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "ap-northeast-2" {
   source = "./lambdas"
   region = "ap-northeast-2"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "ap-southeast-1" {
   source = "./lambdas"
   region = "ap-southeast-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "ap-southeast-2" {
   source = "./lambdas"
   region = "ap-southeast-2"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
 
 module "ap-northeast-1" {
   source = "./lambdas"
   region = "ap-northeast-1"
   ddApiKeySecretName = var.ddApiKeySecretName
+  logSubscriptionLambdaHash = data.archive_file.log_subscription_package.output_base64sha256
+  logSubscriptionLambdaRoleArn = aws_iam_role.log_subscription_lambda_role.arn
 }
