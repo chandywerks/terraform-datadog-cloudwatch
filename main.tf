@@ -14,6 +14,38 @@ variable "ddApiKeySecretName" {
   type = string
 }
 
+// Lambda assume role policy
+data "aws_iam_policy_document" "lambda_assume_role_policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    principals {
+      type = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+    effect = "Allow"
+  }
+}
+
+// Log subscription lambda role
+resource "aws_iam_role" "log_subscription_lambda_role" {
+  name = "log-subscription-lambda-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
+}
+
+// Log subscription lambda policy
+resource "aws_iam_role_policy" "log_subscription_lambda_policy" {
+  name = "log-subscription-lambda-policy"
+  role = aws_iam_role.log_subscription_lambda_role.id
+  policy = file("lambdas/log-subscription/role-policy.json")
+}
+
+// Log subscription lambda package zip
+data "archive_file" "log_subscription_package" {
+  type = "zip"
+  source_dir = "lambdas/log-subscription/function"
+  output_path = "/tmp/log-subscription.zip"
+}
+
 // North America
 module "us-east-1" {
   source = "./lambdas"
