@@ -46,6 +46,26 @@ data "archive_file" "log_subscription_package" {
   output_path = "/tmp/log-subscription.zip"
 }
 
+// Log retention lambda role
+resource "aws_iam_role" "log_retention_lambda_role" {
+  name = "log-retention-lambda-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
+}
+
+// Log retention lambda policy
+resource "aws_iam_role_policy" "log_retention_lambda_policy" {
+  name = "log-retention-lambda-policy"
+  role = aws_iam_role.log_retention_lambda_role.id
+  policy = file("lambdas/log-retention/role-policy.json")
+}
+
+// Log retention lambda package zip
+data "archive_file" "log_retention_package" {
+  type = "zip"
+  source_dir = "lambdas/log-retention/function"
+  output_path = "/tmp/log-retention.zip"
+}
+
 // North America
 module "us-east-1" {
   source = "./lambdas"
