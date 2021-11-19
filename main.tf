@@ -1,17 +1,20 @@
-// TODO configure region as variable
+variable "ddApiKeySecretName" {
+  type = string
+}
+
+variable "region" {
+  type = string
+}
+
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
 
 terraform {
   backend "s3" {
     key    = "datadog-cloudwatch"
-    region = "us-east-1"
+    region = var.region
   }
-}
-
-variable "ddApiKeySecretName" {
-  type = string
 }
 
 // Lambda assume role policy

@@ -8,7 +8,7 @@ When a new cloudwatch log group is created the [log-subscription](lambdas/log-su
 
 ## Usage
 
-Copy example.tfvars and set the name of your datadog API key in secrets manager (last part of the ARN). Make sure this secret is replicated to all regions you are deploying to.
+Copy example.tfvars and set the name of your datadog API key in secrets manager (last part of the ARN) and your default region. Make sure your datadog secret is replicated to all regions you are deploying to.
 
 Auth with AWS and import the session into the environment.
 
