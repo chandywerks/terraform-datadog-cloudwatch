@@ -14,6 +14,13 @@ variable "logSubscriptionLambdaHash" {
   type = string
 }
 
+variable "logRetentionLambdaRoleArn" {
+  type = string
+}
+
+variable "logRetentionLambdaHash" {
+  type = string
+}
 
 provider "aws" {
   region = var.region
@@ -68,6 +75,31 @@ resource "aws_lambda_permission" "create_log_group_subscription_permission" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
   function_name = aws_lambda_function.log_subscription.function_name
+  principal = "events.amazonaws.com"
+  source_arn = aws_cloudwatch_event_rule.create_log_group_event.arn
+}
+
+// Log group retention lambda
+resource "aws_lambda_function" "log_retention" {
+  filename = "/tmp/log-retention.zip"
+  source_code_hash = var.logRetentionLambdaHash
+  function_name = "log-retention"
+  role = var.logRetentionLambdaRoleArn
+  description = "Sets retention time on cloudwatch log groups when created"
+  handler = "index.handler"
+  runtime = "nodejs14.x"
+}
+
+resource "aws_cloudwatch_event_target" "create_log_group_event_trigger" {
+  rule = aws_cloudwatch_event_rule.create_log_group_event.name
+  target_id = "log_retention"
+  arn = aws_lambda_function.log_retention.arn
+}
+
+resource "aws_lambda_permission" "create_log_group_event_permission" {
+  statement_id = "AllowExecutionFromCloudWatch"
+  action = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.log_retention.function_name
   principal = "events.amazonaws.com"
   source_arn = aws_cloudwatch_event_rule.create_log_group_event.arn
 }

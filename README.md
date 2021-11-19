@@ -1,6 +1,6 @@
-# Terraform: Datadog Forwarder with Cloudwatch Subscription Lambda
+# Terraform: Datadog Forwarder with Cloudwatch Subscription & Retention Lambdas
 
-Deploys the [datadog forwarder](https://docs.datadoghq.com/serverless/forwarder/) and automatic log group subscription lambdas across multiple AWS regions. Useful for capturing lambda@edge log groups generated just in time in multiple edge locations.
+Deploys the [datadog forwarder](https://docs.datadoghq.com/serverless/forwarder/) and automatic log group subscription and retention policy lambdas across multiple AWS regions. Useful for capturing lambda@edge log groups generated just in time in multiple edge locations.
 
 ## Usage
 
